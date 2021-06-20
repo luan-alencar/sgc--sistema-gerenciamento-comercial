@@ -1,0 +1,18 @@
+version: '2'
+services:
+  sgc-registry:
+    extends:
+      file: jhipster-registry.yml
+      service: jhipster-registry
+    container_name: sgc-jhipster-registry
+  sgc-postgresql-registry:
+    extends:
+      file: postgresql-registry.yml
+      service: sgc-postgresql-registry
+    container_name: sgc-postgresql-registry
+  rabbitmq-registry:
+    extends:
+      file: rabbitmq-registry.yml
+      service: rabbitmq-registry
+    container_name: sgc-rabbitmq-registry
+
