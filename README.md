@@ -45,7 +45,7 @@ Os containers serão montados e estarão prontos.
 Os serviços são compilados com o maven:
 
 ```
-clean install
+mvn clean install -DskipTests
 ```
 
 Não há necessidade de executar testes, deve-se utilizar o profile de dev.
