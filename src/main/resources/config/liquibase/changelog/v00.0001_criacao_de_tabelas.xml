@@ -5,9 +5,44 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <changeSet id="1" author="luan.augusto">
+        <createTable tableName="TB_USUARIO">
 
+            <column name="ID_USUARIO" type="NUMBER" remarks="Criacao tabela Usuario" >
+                <constraints nullable="false" />
+            </column>
 
+            <column name="CPF" type="VARCHAR(14)" remarks="Criacao tabela CPF">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="EMAIL" type="VARCHAR(255)" remarks="Criacao tabela Email">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TELEFONE" type="VARCHAR(14)" remarks="Criacao tabela Telefone">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="DATA_NASCIMENTO" type="TIMESTAMP" remarks="Criacao tabela Data de nascimento">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="CHAVE_ACESSO" type="VARCHAR(255)" remarks="Criacao tabela da Chave de acesso">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="IS_ADMIN" type="BOOLEAN" remarks="Criacao tabela que indica se é ADMIN ou nao">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="TB_USUARIO" columnNames="ID_USUARIO" constraintName="FK_USUARIO"/>
+        <createSequence sequenceName="SQ_USUARIO" startValue="2" incrementBy="1"/>
     </changeSet>
+
+<!--    <changeSet id="2" author="TIPO">-->
+<!--        <-->
+<!--    </changeSet>-->
 
 
 </databaseChangeLog>
