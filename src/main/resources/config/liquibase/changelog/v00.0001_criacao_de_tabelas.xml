@@ -11,6 +11,18 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="PRIMEIRO_NOME" type="VARCHAR(255)" remarks="Criacao tabela Primeiro nome">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="SEGUNDO_NOME" type="VARCHAR(255)" remarks="Criacao tabela Segundo nome">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="NOME" type="VARCHAR(255)" remarks="Criacao tabela Nome">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="CPF" type="VARCHAR(14)" remarks="Criacao tabela CPF">
                 <constraints nullable="false"/>
             </column>
@@ -39,10 +51,6 @@
         <addPrimaryKey tableName="TB_USUARIO" columnNames="ID_USUARIO" constraintName="FK_USUARIO"/>
         <createSequence sequenceName="SQ_USUARIO" startValue="2" incrementBy="1"/>
     </changeSet>
-
-<!--    <changeSet id="2" author="TIPO">-->
-<!--        <-->
-<!--    </changeSet>-->
 
 
 </databaseChangeLog>

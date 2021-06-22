@@ -24,6 +24,15 @@ public class Usuario implements Serializable {
     @SequenceGenerator(name = "SQ_USUARIO", sequenceName = "SQ_USUARIO", allocationSize = 1, initialValue = 1)
     private Long id;
 
+    @Column(name = "PRIMEIRO_NOME")
+    public String primeiroNome;
+
+    @Column(name = "SEGUNDO_NOME")
+    public String ultimoNome;
+
+    @Column(name = "NOME")
+    public String nome;
+
     @Column(name = "CPF")
     private String cpf;
 
