@@ -30,7 +30,7 @@ public class UsuarioDTO {
     private Boolean isAdmin;
 
     private String gerarNomeUsuario() {
-        if (primeiroNome != null) {
+        if (nome != null && primeiroNome != null) {
             return ((ultimoNome != null) ? ultimoNome : "") + " " + primeiroNome;
         }
         return nome;
