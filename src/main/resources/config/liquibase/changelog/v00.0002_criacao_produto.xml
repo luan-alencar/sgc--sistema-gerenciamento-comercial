@@ -1,0 +1,80 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+
+    <changeSet id="3" author="luan.augusto">
+        <createTable tableName="TB_CATEGORIA">
+
+            <column name="ID_CATEGORIA" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="DESCRICAO" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="TB_CATEGORIA" columnNames="ID_CATEGORIA" constraintName="PK_CATEGORIA"/>
+    </changeSet>
+
+
+    <changeSet id="4" author="luan.augusto">
+        <createTable tableName="TB_SITUACAO_PRODUTO" remarks="Criacao tabela de Situacoes de um Produto">
+
+            <column name="ID_SITUACAO" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="DESCRICAO" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="luan.augusto">
+        <createTable tableName="TB_PRODUTO" remarks="Criacao de tabela Produto">
+
+            <column name="ID_PRODUTO" type="NUMBER" remarks="Criacao coluna ID_PRODUTO">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="NOME" type="VARCHAR(255)" remarks="Criacao coluna Nome">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="QUANTIDADE_MINIMA" type="NUMBER" remarks="Criacao coluna Quantidade">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="VALOR" type="DOUBLE" remarks="Criacao coluna Valor">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="ID_SITUACAO" type="NUMBER" remarks="Criacao coluna para o ID de uma Situacao">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="ID_CATEGORIA" type="NUMBER" remarks="Criacao coluna para o ID de uma Categoria">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="TB_PRODUTO" columnNames="ID_PRODUTO" constraintName="FK_PRODUTO"/>
+        <createSequence sequenceName="SQ_PRODUTO" startValue="2" incrementBy="1"/>
+
+        <addForeignKeyConstraint baseTableName="TB_PRODUTO" baseColumnNames="ID_SITUACAO"
+                                 constraintName="FK_PRODUTO" referencedTableName="TB_CATEGORIA"
+                                 referencedColumnNames="ID_CATEGORIA"/>
+
+        <addForeignKeyConstraint baseTableName="TB_PRODUTO" baseColumnNames="ID_CATEGORIA"
+                                 constraintName="FK_CATEGORIA"
+                                 referencedTableName="TB_CATEGORIA"
+                                 referencedColumnNames="ID_CATEGORIA"/>
+    </changeSet>
+
+
+
+</databaseChangeLog>
