@@ -17,7 +17,7 @@
             </column>
         </createTable>
 
-        <addPrimaryKey tableName="TB_CATEGORIA" columnNames="ID_CATEGORIA" constraintName="PK_CATEGORIA"/>
+        <addPrimaryKey tableName="TB_CATEGORIA" columnNames="ID_CATEGORIA"/>
     </changeSet>
 
 
@@ -62,7 +62,7 @@
             </column>
         </createTable>
 
-        <addPrimaryKey tableName="TB_PRODUTO" columnNames="ID_PRODUTO" constraintName="FK_PRODUTO"/>
+        <addPrimaryKey tableName="TB_PRODUTO" columnNames="ID_PRODUTO" constraintName="PK_PRODUTO"/>
         <createSequence sequenceName="SQ_PRODUTO" startValue="2" incrementBy="1"/>
 
         <addForeignKeyConstraint baseTableName="TB_PRODUTO" baseColumnNames="ID_SITUACAO"

@@ -18,17 +18,17 @@
         </insert>
 
         <insert tableName="TB_CATEGORIA">
-            <column name="ID_CATEGORIA">1</column>
+            <column name="ID_CATEGORIA">3</column>
             <column name="DESCRICAO">Alimento</column>
         </insert>
 
         <insert tableName="TB_CATEGORIA">
-            <column name="ID_CATEGORIA">3</column>
+            <column name="ID_CATEGORIA">4</column>
             <column name="DESCRICAO">Acessórios</column>
         </insert>
 
         <insert tableName="TB_CATEGORIA">
-            <column name="ID_CATEGORIA">4</column>
+            <column name="ID_CATEGORIA">5</column>
             <column name="DESCRICAO">Eletrônico</column>
         </insert>
 
