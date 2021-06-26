@@ -1,5 +1,7 @@
 package david.augusto.luan.sgc.service;
 
+import david.augusto.luan.sgc.dominio.Usuario;
+import david.augusto.luan.sgc.service.dto.UsuarioDTO;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
