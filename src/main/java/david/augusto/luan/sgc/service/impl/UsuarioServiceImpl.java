@@ -2,21 +2,22 @@ package david.augusto.luan.sgc.service.impl;
 
 import david.augusto.luan.sgc.dominio.Usuario;
 import david.augusto.luan.sgc.repository.UsuarioRepository;
-import david.augusto.luan.sgc.service.EntityServiceGeneric;
-import david.augusto.luan.sgc.service.UsuarioGenericEntity;
+import david.augusto.luan.sgc.service.ServiceGenericEntity;
 import david.augusto.luan.sgc.service.dto.UsuarioDTO;
 import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
 import david.augusto.luan.sgc.service.mapper.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
-public class UsuarioServiceImpl implements EntityServiceGeneric<UsuarioDTO>, UsuarioGenericEntity {
+public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO, Usuario> {
 
     private static final LocalDate DATA_ATUAL = LocalDate.now();
     private final UsuarioMapper usuarioMapper;
@@ -25,11 +26,6 @@ public class UsuarioServiceImpl implements EntityServiceGeneric<UsuarioDTO>, Usu
     @Override
     public List<UsuarioDTO> findAll() {
         return usuarioMapper.toListDTO(usuarioRepository.findAll());
-    }
-
-    @Override
-    public UsuarioDTO save(UsuarioDTO entity) {
-        return null;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package david.augusto.luan.sgc.service;
 
-import david.augusto.luan.sgc.dominio.Usuario;
-import david.augusto.luan.sgc.service.dto.UsuarioDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -9,11 +8,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public interface EntityServiceGeneric<T> {
+public interface ServiceGenericEntity<T, Y> {
 
     List<T> findAll();
 
-    T save(T entity);
+    T save(Y entity);
 
     void delete(T entity);
 
