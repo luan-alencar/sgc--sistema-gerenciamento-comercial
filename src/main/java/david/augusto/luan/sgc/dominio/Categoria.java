@@ -19,7 +19,7 @@ public class Categoria  implements Serializable {
     private static final long serialVersionUID = 4371679100150120121L;
 
     @Id
-    private Long id;
+    private Integer id;
 
     @Column(name = "DESCRICAO")
     private String descricao;

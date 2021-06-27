@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -22,7 +24,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_USUARIO")
     @SequenceGenerator(name = "SQ_USUARIO", sequenceName = "SQ_USUARIO", allocationSize = 1, initialValue = 1)
-    private Long id;
+    private Integer id;
 
     @Column(name = "PRIMEIRO_NOME")
     public String primeiroNome;
@@ -34,12 +36,15 @@ public class Usuario implements Serializable {
     public String nome;
 
     @Column(name = "CPF")
+    @Size(max = 11, min = 11)
     private String cpf;
 
     @Column(name = "EMAIL")
+    @Email
     private String email;
 
     @Column(name = "TELEFONE")
+    @Size(max = 15)
     private String telefone;
 
     @Column(name = "DATA_NASCIMENTO")

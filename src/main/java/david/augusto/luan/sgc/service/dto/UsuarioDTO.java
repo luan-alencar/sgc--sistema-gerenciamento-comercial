@@ -1,5 +1,6 @@
 package david.augusto.luan.sgc.service.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,10 +13,11 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioDTO {
 
-    private Long id;
+    private Integer id;
 
     @NotBlank
     public String primeiroNome;
@@ -27,10 +29,9 @@ public class UsuarioDTO {
     public String nome;
 
     @NotBlank
-    @CPF
     private String cpf;
 
-    @Email
+    @NotBlank
     private String email;
 
     @NotBlank

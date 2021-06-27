@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CategoriaDTO {
 
-    private Long id;
+    private Integer id;
 
     private String descricao;
 }
