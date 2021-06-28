@@ -38,7 +38,7 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
     @Override
     public UsuarioDTO save(UsuarioDTO usuarioDTO) {
         usuarioDTO.setIsAdmin(NOT_ADMIN);
-//        validarCpfEMail(usuarioDTO);
+        validarCpfEMail(usuarioDTO);
         Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
         return usuarioMapper.toDTO(usuarioRepository.save(usuario));
     }
