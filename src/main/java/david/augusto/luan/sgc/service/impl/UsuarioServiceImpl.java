@@ -60,10 +60,10 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
                 .append(cpfSemFormatacao.substring(9, 11)).toString();
     }
 
-//    private Boolean validarCpfEMail(UsuarioDTO usuarioDto) {
-//        return usuarioRepository.findIdsByCpfOrEmail(usuarioDto)
-//                .orElseThrow(() -> new RegraNegocioException(ConstantsUtil.USUARIO_CPF_EMAIL_DUPLICADO));
-//    }
+    private Boolean validarCpfEMail(UsuarioDTO usuarioDto) {
+        return usuarioRepository.findIdsByCpfOrEmail(usuarioDto)
+                .orElseThrow(() -> new RegraNegocioException(ConstantsUtil.USUARIO_CPF_EMAIL_DUPLICADO));
+    }
 
 
     private void verificarDataNascimentoUsuario(UsuarioDTO usuarioDTO) {
