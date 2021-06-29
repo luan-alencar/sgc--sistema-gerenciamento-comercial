@@ -9,7 +9,12 @@ public class ConstantsUtil {
 
     public static final String FORMATO_CPF = "$1.$2.$3-$4";
     public static final String MASCARA_CPF = "###.###.###-##";
+    public static final String CPF_NAO_CADASTRADO = "CPF não cadastrado.";
+
     public static final String HIFEN = "-";
     public static final String PONTO = ".";
+
+    public static final Integer POSICAO_ZERO = 0;
+    public static final Integer POSICAO_TRES = 3;
 
 }

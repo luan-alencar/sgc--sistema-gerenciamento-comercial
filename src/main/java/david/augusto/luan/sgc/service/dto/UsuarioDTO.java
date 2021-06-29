@@ -6,16 +6,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioDTO {
+public class UsuarioDTO implements Serializable {
 
     private Integer id;
 
@@ -29,6 +29,7 @@ public class UsuarioDTO {
     public String nome;
 
     @NotBlank
+    @CPF
     private String cpf;
 
     @NotBlank
@@ -47,5 +48,15 @@ public class UsuarioDTO {
             return ((ultimoNome != null) ? ultimoNome : "") + " " + primeiroNome;
         }
         return nome;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
     }
 }

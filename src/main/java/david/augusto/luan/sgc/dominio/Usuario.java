@@ -55,5 +55,15 @@ public class Usuario implements Serializable {
 
     @Column(name = "IS_ADMIN")
     private Boolean isAdmin;
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
 }
 
