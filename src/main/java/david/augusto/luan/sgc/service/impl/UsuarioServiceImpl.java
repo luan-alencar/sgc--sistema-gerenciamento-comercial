@@ -39,13 +39,16 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
 
     @Override
     public UsuarioDTO salvar(UsuarioDTO usuarioDTO) {
+        validacoesNecessarias(usuarioDTO);
+        return mapper.toDTO(repository.save(mapper.toEntity(usuarioDTO)));
+    }
+
+    private void validacoesNecessarias(UsuarioDTO usuarioDTO) {
         usuarioDTO.setIsAdmin(NOT_ADMIN);
         obterPorCpf(usuarioDTO.getCpf());
         validarCpfEMail(usuarioDTO);
         verificarDataNascimentoUsuario(usuarioDTO);
         gerarChaveUnicaDeAcesso(usuarioDTO);
-        Usuario usuario = mapper.toEntity(usuarioDTO);
-        return mapper.toDTO(repository.save(usuario));
     }
 
 
