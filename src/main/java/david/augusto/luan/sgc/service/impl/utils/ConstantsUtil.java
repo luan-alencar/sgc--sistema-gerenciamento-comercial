@@ -16,5 +16,8 @@ public class ConstantsUtil {
 
     public static final Integer POSICAO_ZERO = 0;
     public static final Integer POSICAO_TRES = 3;
+    public static final Integer POSICAO_SEIS = 6;
+    public static final Integer POSICAO_NOVE = 9;
+    public static final Integer POSICAO_ONZE = 11;
 
 }

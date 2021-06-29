@@ -18,8 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import static david.augusto.luan.sgc.service.impl.utils.ConstantsUtil.POSICAO_TRES;
-import static david.augusto.luan.sgc.service.impl.utils.ConstantsUtil.POSICAO_ZERO;
+import static david.augusto.luan.sgc.service.impl.utils.ConstantsUtil.*;
 
 @Service
 @Transactional
@@ -48,7 +47,6 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
     }
 
 
-
     private List<DominioFixoDTO> obterPorCpf(String cpf) {
         String cpfSemFormatacao = cpf.replaceAll(ConstantsUtil.REGEX_PONTO_HIFEN, StringUtils.EMPTY);
         List<DominioFixoDTO> usuarios = usuarioRepository.obterPorCpf(cpfSemFormatacao);
@@ -59,14 +57,13 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
         });
 
         return usuarios;
-
     }
 
     private String mascararCpf(String cpfSemFormatacao) {
         return new StringBuilder().append(cpfSemFormatacao.substring(POSICAO_ZERO, POSICAO_TRES)).append(ConstantsUtil.PONTO)
-                .append(cpfSemFormatacao.substring(3, 6)).append(ConstantsUtil.PONTO)
-                .append(cpfSemFormatacao.substring(6, 9)).append(ConstantsUtil.HIFEN)
-                .append(cpfSemFormatacao.substring(9, 11)).toString();
+                .append(cpfSemFormatacao.substring(POSICAO_TRES, POSICAO_SEIS)).append(ConstantsUtil.PONTO)
+                .append(cpfSemFormatacao.substring(POSICAO_SEIS, POSICAO_NOVE)).append(ConstantsUtil.HIFEN)
+                .append(cpfSemFormatacao.substring(POSICAO_NOVE, POSICAO_ONZE)).toString();
     }
 
     private Boolean validarCpfEMail(UsuarioDTO usuarioDto) {
