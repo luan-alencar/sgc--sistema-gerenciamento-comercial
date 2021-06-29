@@ -20,4 +20,5 @@ public class ConstantsUtil {
     public static final Integer POSICAO_NOVE = 9;
     public static final Integer POSICAO_ONZE = 11;
 
+    public static final String USUARIO_NAO_CADASTRADO = "Usuario não cadastrado.";
 }

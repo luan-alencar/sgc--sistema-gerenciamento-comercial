@@ -6,6 +6,7 @@ import david.augusto.luan.sgc.service.ServiceGenericEntity;
 import david.augusto.luan.sgc.service.dto.DominioFixoDTO;
 import david.augusto.luan.sgc.service.dto.UsuarioDTO;
 import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
+import david.augusto.luan.sgc.service.impl.utils.ConstantsUtil;
 import david.augusto.luan.sgc.service.mapper.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,15 +33,17 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
     private static final LocalDate DATA_ATUAL = LocalDate.now();
 
     @Override
-    public List<UsuarioDTO> findAll() {
+    public List<UsuarioDTO> buscarTodos() {
         return mapper.toListDTO(repository.findAll());
     }
 
     @Override
-    public UsuarioDTO save(UsuarioDTO usuarioDTO) {
+    public UsuarioDTO salvar(UsuarioDTO usuarioDTO) {
         usuarioDTO.setIsAdmin(NOT_ADMIN);
         obterPorCpf(usuarioDTO.getCpf());
         validarCpfEMail(usuarioDTO);
+        verificarDataNascimentoUsuario(usuarioDTO);
+        gerarChaveUnicaDeAcesso(usuarioDTO);
         Usuario usuario = mapper.toEntity(usuarioDTO);
         return mapper.toDTO(repository.save(usuario));
     }
@@ -67,12 +70,12 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
 
     private Boolean validarCpfEMail(UsuarioDTO usuarioDto) {
         return repository.findIdsByCpfOrEmail(usuarioDto)
-                .orElseThrow(() -> new RegraNegocioException(USUARIO_CPF_EMAIL_DUPLICADO));
+                .orElseThrow(() -> new RegraNegocioException(USUARIO_NAO_CADASTRADO, USUARIO_CPF_EMAIL_DUPLICADO));
     }
 
     private void verificarDataNascimentoUsuario(UsuarioDTO usuarioDTO) {
         if (usuarioDTO.getDataNascimento().isAfter(DATA_ATUAL)) {
-            throw new RegraNegocioException("Data de nascimento invalida");
+            throw new RegraNegocioException(USUARIO_NAO_CADASTRADO, "Data de nascimento invalida");
         }
     }
 
@@ -88,7 +91,8 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
     }
 
     @Override
-    public void deleteById(Integer id) {
-
+    public UsuarioDTO buscarPorId(Integer id) {
+        return mapper.toDTO(repository.findById(id)
+                .orElseThrow(() -> new RegraNegocioException(USUARIO_NAO_CADASTRADO, ERROR_TITLE)));
     }
 }

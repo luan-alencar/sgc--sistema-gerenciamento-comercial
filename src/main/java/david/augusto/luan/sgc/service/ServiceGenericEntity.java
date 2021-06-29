@@ -1,6 +1,6 @@
 package david.augusto.luan.sgc.service;
 
-import david.augusto.luan.sgc.service.dto.UsuarioDTO;
+import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -10,11 +10,11 @@ import java.util.List;
 @Transactional
 public interface ServiceGenericEntity<T> {
 
-    List<T> findAll();
+    List<T> buscarTodos();
 
-    T save(T entity);
+    T salvar(T entity);
 
     void delete(T entity);
 
-    void deleteById(Integer id);
+    T buscarPorId(Integer id) throws RegraNegocioException;
 }
