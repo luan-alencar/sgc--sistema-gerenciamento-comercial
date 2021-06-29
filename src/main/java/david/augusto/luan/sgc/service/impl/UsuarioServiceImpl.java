@@ -6,7 +6,6 @@ import david.augusto.luan.sgc.service.ServiceGenericEntity;
 import david.augusto.luan.sgc.service.dto.DominioFixoDTO;
 import david.augusto.luan.sgc.service.dto.UsuarioDTO;
 import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
-import david.augusto.luan.sgc.service.impl.utils.ConstantsUtil;
 import david.augusto.luan.sgc.service.mapper.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,15 +25,15 @@ import static david.augusto.luan.sgc.service.impl.utils.ConstantsUtil.*;
 @Slf4j
 public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
 
-    private final UsuarioMapper usuarioMapper;
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioMapper mapper;
+    private final UsuarioRepository repository;
 
     private static final Boolean NOT_ADMIN = false;
     private static final LocalDate DATA_ATUAL = LocalDate.now();
 
     @Override
     public List<UsuarioDTO> findAll() {
-        return usuarioMapper.toListDTO(usuarioRepository.findAll());
+        return mapper.toListDTO(repository.findAll());
     }
 
     @Override
@@ -42,14 +41,14 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
         usuarioDTO.setIsAdmin(NOT_ADMIN);
         obterPorCpf(usuarioDTO.getCpf());
         validarCpfEMail(usuarioDTO);
-        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
-        return usuarioMapper.toDTO(usuarioRepository.save(usuario));
+        Usuario usuario = mapper.toEntity(usuarioDTO);
+        return mapper.toDTO(repository.save(usuario));
     }
 
 
-    private List<DominioFixoDTO> obterPorCpf(String cpf) {
-        String cpfSemFormatacao = cpf.replaceAll(ConstantsUtil.REGEX_PONTO_HIFEN, StringUtils.EMPTY);
-        List<DominioFixoDTO> usuarios = usuarioRepository.obterPorCpf(cpfSemFormatacao);
+    public List<DominioFixoDTO> obterPorCpf(String cpf) {
+        String cpfSemFormatacao = cpf.replaceAll(REGEX_PONTO_HIFEN, StringUtils.EMPTY);
+        List<DominioFixoDTO> usuarios = repository.obterPorCpf(cpfSemFormatacao);
         usuarios.forEach(usuario -> {
 
             String cpfFormatado = mascararCpf(usuario.getLabel());
@@ -60,15 +59,15 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
     }
 
     private String mascararCpf(String cpfSemFormatacao) {
-        return new StringBuilder().append(cpfSemFormatacao.substring(POSICAO_ZERO, POSICAO_TRES)).append(ConstantsUtil.PONTO)
-                .append(cpfSemFormatacao.substring(POSICAO_TRES, POSICAO_SEIS)).append(ConstantsUtil.PONTO)
-                .append(cpfSemFormatacao.substring(POSICAO_SEIS, POSICAO_NOVE)).append(ConstantsUtil.HIFEN)
+        return new StringBuilder().append(cpfSemFormatacao.substring(POSICAO_ZERO, POSICAO_TRES)).append(PONTO)
+                .append(cpfSemFormatacao.substring(POSICAO_TRES, POSICAO_SEIS)).append(PONTO)
+                .append(cpfSemFormatacao.substring(POSICAO_SEIS, POSICAO_NOVE)).append(HIFEN)
                 .append(cpfSemFormatacao.substring(POSICAO_NOVE, POSICAO_ONZE)).toString();
     }
 
     private Boolean validarCpfEMail(UsuarioDTO usuarioDto) {
-        return usuarioRepository.findIdsByCpfOrEmail(usuarioDto)
-                .orElseThrow(() -> new RegraNegocioException(ConstantsUtil.USUARIO_CPF_EMAIL_DUPLICADO));
+        return repository.findIdsByCpfOrEmail(usuarioDto)
+                .orElseThrow(() -> new RegraNegocioException(USUARIO_CPF_EMAIL_DUPLICADO));
     }
 
     private void verificarDataNascimentoUsuario(UsuarioDTO usuarioDTO) {
@@ -78,9 +77,9 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
     }
 
     private UsuarioDTO gerarChaveUnicaDeAcesso(UsuarioDTO usuarioDTO) {
-        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
+        Usuario usuario = mapper.toEntity(usuarioDTO);
         usuario.setChaveUnica(UUID.randomUUID().toString());
-        return usuarioMapper.toDTO(usuario);
+        return mapper.toDTO(usuario);
     }
 
     @Override
