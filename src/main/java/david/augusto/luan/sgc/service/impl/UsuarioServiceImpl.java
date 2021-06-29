@@ -2,18 +2,17 @@ package david.augusto.luan.sgc.service.impl;
 
 import david.augusto.luan.sgc.dominio.Usuario;
 import david.augusto.luan.sgc.repository.UsuarioRepository;
-import david.augusto.luan.sgc.service.ServiceGenericEntity;
+import david.augusto.luan.sgc.service.UsuarioService;
 import david.augusto.luan.sgc.service.dto.DominioFixoDTO;
 import david.augusto.luan.sgc.service.dto.UsuarioDTO;
 import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
-import david.augusto.luan.sgc.service.impl.utils.ConstantsUtil;
 import david.augusto.luan.sgc.service.mapper.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -24,7 +23,7 @@ import static david.augusto.luan.sgc.service.impl.utils.ConstantsUtil.*;
 @Transactional
 @RequiredArgsConstructor
 @Slf4j
-public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
+public class UsuarioServiceImpl implements UsuarioService<UsuarioDTO> {
 
     private final UsuarioMapper mapper;
     private final UsuarioRepository repository;
@@ -38,17 +37,18 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
     }
 
     @Override
-    public UsuarioDTO salvar(UsuarioDTO usuarioDTO) {
-        validacoesNecessarias(usuarioDTO);
-        return mapper.toDTO(repository.save(mapper.toEntity(usuarioDTO)));
+    public UsuarioDTO salvar(Usuario usuarioDTO) {
+        usuarioDTO.setIsAdmin(NOT_ADMIN);
+        UsuarioDTO validaUsuario = validacoesNecessarias(usuarioDTO);
+        return mapper.toDTO(repository.save(mapper.toEntity(validaUsuario)));
     }
 
-    private void validacoesNecessarias(UsuarioDTO usuarioDTO) {
-        usuarioDTO.setIsAdmin(NOT_ADMIN);
-        obterPorCpf(usuarioDTO.getCpf());
-        validarCpfEMail(usuarioDTO);
-        verificarDataNascimentoUsuario(usuarioDTO);
-        gerarChaveUnicaDeAcesso(usuarioDTO);
+    public UsuarioDTO validacoesNecessarias(Usuario usuario) {
+        obterPorCpf(usuario.getCpf());
+        validarCpfEMail(mapper.toDTO(usuario));
+        verificarDataNascimentoUsuario(mapper.toDTO(usuario));
+        gerarChaveUnicaDeAcesso(usuario);
+        return mapper.toDTO(usuario);
     }
 
 
@@ -76,14 +76,14 @@ public class UsuarioServiceImpl implements ServiceGenericEntity<UsuarioDTO> {
                 .orElseThrow(() -> new RegraNegocioException(USUARIO_NAO_CADASTRADO, USUARIO_CPF_EMAIL_DUPLICADO));
     }
 
-    private void verificarDataNascimentoUsuario(UsuarioDTO usuarioDTO) {
+    private UsuarioDTO verificarDataNascimentoUsuario(UsuarioDTO usuarioDTO) {
         if (usuarioDTO.getDataNascimento().isAfter(DATA_ATUAL)) {
             throw new RegraNegocioException(USUARIO_NAO_CADASTRADO, "Data de nascimento invalida");
         }
+        return usuarioDTO;
     }
 
-    private UsuarioDTO gerarChaveUnicaDeAcesso(UsuarioDTO usuarioDTO) {
-        Usuario usuario = mapper.toEntity(usuarioDTO);
+    private UsuarioDTO gerarChaveUnicaDeAcesso(Usuario usuario) {
         usuario.setChaveUnica(UUID.randomUUID().toString());
         return mapper.toDTO(usuario);
     }

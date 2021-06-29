@@ -25,7 +25,7 @@ public class UsuarioDTO implements Serializable {
     @NotBlank
     public String ultimoNome;
 
-    @NotEmpty
+//    @NotEmpty
     public String nome;
 
     @NotBlank

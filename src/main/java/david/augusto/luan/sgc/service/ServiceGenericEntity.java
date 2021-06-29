@@ -8,11 +8,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public interface ServiceGenericEntity<T> {
+public interface ServiceGenericEntity<T, Y> {
 
     List<T> buscarTodos();
 
-    T salvar(T entity);
+    T salvar(Y entity);
 
     void delete(T entity);
 

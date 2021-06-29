@@ -7,7 +7,7 @@
     <changeSet id="1" author="luan.augusto">
         <createTable tableName="TB_USUARIO">
 
-            <column name="ID_USUARIO" type="NUMBER" remarks="Criacao tabela Usuario" >
+            <column name="ID" type="NUMBER" remarks="Criacao tabela Usuario" >
                 <constraints nullable="false" />
             </column>
 
@@ -48,7 +48,7 @@
             </column>
         </createTable>
 
-        <addPrimaryKey tableName="TB_USUARIO" columnNames="ID_USUARIO" constraintName="FK_USUARIO"/>
+        <addPrimaryKey tableName="TB_USUARIO" columnNames="ID" constraintName="FK_USUARIO"/>
         <createSequence sequenceName="SQ_USUARIO" startValue="2" incrementBy="1"/>
     </changeSet>
 
