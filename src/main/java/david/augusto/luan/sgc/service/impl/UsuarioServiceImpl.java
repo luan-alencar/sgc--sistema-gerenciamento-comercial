@@ -56,11 +56,9 @@ public class UsuarioServiceImpl implements UsuarioService<UsuarioDTO> {
         String cpfSemFormatacao = cpf.replaceAll(REGEX_PONTO_HIFEN, StringUtils.EMPTY);
         List<DominioFixoDTO> usuarios = repository.obterPorCpf(cpfSemFormatacao);
         usuarios.forEach(usuario -> {
-
             String cpfFormatado = mascararCpf(usuario.getLabel());
             usuario.setLabel(cpfFormatado);
         });
-
         return usuarios;
     }
 
