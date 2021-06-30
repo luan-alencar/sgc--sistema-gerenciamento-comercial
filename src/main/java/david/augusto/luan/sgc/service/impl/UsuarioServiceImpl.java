@@ -37,18 +37,18 @@ public class UsuarioServiceImpl implements UsuarioService<UsuarioDTO> {
     }
 
     @Override
-    public UsuarioDTO salvar(Usuario usuarioDTO) {
+    public UsuarioDTO salvar(UsuarioDTO usuarioDTO) {
         usuarioDTO.setIsAdmin(NOT_ADMIN);
         UsuarioDTO validaUsuario = validacoesNecessarias(usuarioDTO);
         return mapper.toDTO(repository.save(mapper.toEntity(validaUsuario)));
     }
 
-    public UsuarioDTO validacoesNecessarias(Usuario usuario) {
+    public UsuarioDTO validacoesNecessarias(UsuarioDTO usuario) {
         obterPorCpf(usuario.getCpf());
-        validarCpfEMail(mapper.toDTO(usuario));
-        verificarDataNascimentoUsuario(mapper.toDTO(usuario));
-        gerarChaveUnicaDeAcesso(usuario);
-        return mapper.toDTO(usuario);
+        validarCpfEMail(usuario);
+        verificarDataNascimentoUsuario(usuario);
+        gerarChaveUnicaDeAcesso(mapper.toEntity(usuario));
+        return usuario;
     }
 
 

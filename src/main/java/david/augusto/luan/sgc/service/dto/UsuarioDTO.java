@@ -25,9 +25,6 @@ public class UsuarioDTO implements Serializable {
     @NotBlank
     public String ultimoNome;
 
-//    @NotEmpty
-    public String nome;
-
     @NotBlank
     @CPF
     private String cpf;
@@ -42,13 +39,6 @@ public class UsuarioDTO implements Serializable {
     private LocalDate dataNascimento;
 
     private Boolean isAdmin;
-
-    private String gerarNomeUsuario() {
-        if (nome != null && primeiroNome != null) {
-            return ((ultimoNome != null) ? ultimoNome : "") + " " + primeiroNome;
-        }
-        return nome;
-    }
 
     @Override
     public int hashCode() {

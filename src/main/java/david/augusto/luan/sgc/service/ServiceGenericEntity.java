@@ -12,7 +12,7 @@ public interface ServiceGenericEntity<T, Y> {
 
     List<T> buscarTodos();
 
-    T salvar(Y entity);
+    T salvar(T entity);
 
     void delete(T entity);
 

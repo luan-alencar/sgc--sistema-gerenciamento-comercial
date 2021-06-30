@@ -19,7 +19,7 @@ public interface UsuarioService<U> extends ServiceGenericEntity<UsuarioDTO, Usua
     List<DominioFixoDTO> obterPorCpf(String cpf);
 
     @Override
-    UsuarioDTO salvar(Usuario entity);
+    UsuarioDTO salvar(UsuarioDTO entity);
 
     @Override
     void delete(UsuarioDTO entity);

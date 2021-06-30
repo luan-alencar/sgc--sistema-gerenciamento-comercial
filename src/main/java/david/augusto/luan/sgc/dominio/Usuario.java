@@ -56,6 +56,13 @@ public class Usuario implements Serializable {
     @Column(name = "IS_ADMIN")
     private Boolean isAdmin;
 
+    private String gerarNomeUsuario() {
+        if (nome != null && primeiroNome != null) {
+            return ((ultimoNome != null) ? ultimoNome : "") + " " + primeiroNome;
+        }
+        return nome;
+    }
+
     @Override
     public int hashCode() {
         return super.hashCode();
