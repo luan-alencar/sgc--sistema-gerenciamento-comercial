@@ -17,7 +17,7 @@
             <column name="TELEFONE">222222222222</column>
             <column name="DATA_NASCIMENTO">1996-10-11</column>
             <column name="CHAVE_ACESSO">fsadfasdfqwe34fasd</column>
-            <column name="IS_ADMIN">false</column>
+            <column name="IS_ADMIN">true</column>
         </insert>
     </changeSet>
 
