@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public interface ServiceGenericEntity<T, Y> {
+public interface ServiceGenericEntity<T> {
 
     List<T> buscarTodos();
 
@@ -17,4 +17,6 @@ public interface ServiceGenericEntity<T, Y> {
     void delete(T entity);
 
     T buscarPorId(Integer id) throws RegraNegocioException;
+
+    T atualizar(Integer id) throws RegraNegocioException;
 }

@@ -1,6 +1,8 @@
 package david.augusto.luan.sgc.service;
 
+import david.augusto.luan.sgc.dominio.Categoria;
 import david.augusto.luan.sgc.service.dto.DominioFixoDTO;
+import david.augusto.luan.sgc.service.dto.ProdutoDTO;
 import david.augusto.luan.sgc.service.dto.UsuarioDTO;
 import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
 import org.springframework.stereotype.Service;
@@ -10,19 +12,19 @@ import java.util.List;
 
 @Service
 @Transactional
-public interface UsuarioService extends ServiceGenericEntity<UsuarioDTO> {
+public interface ProdutoService extends ServiceGenericEntity<ProdutoDTO> {
 
     @Override
-    List<UsuarioDTO> buscarTodos();
+    List<ProdutoDTO> buscarTodos();
 
-    List<DominioFixoDTO> obterPorCpf(String cpf);
-
-    @Override
-    UsuarioDTO salvar(UsuarioDTO entity);
+    List<Categoria> obterPoCategoria(Integer idCategoria);
 
     @Override
-    void delete(UsuarioDTO entity);
+    ProdutoDTO salvar(ProdutoDTO entity);
 
     @Override
-    UsuarioDTO buscarPorId(Integer id) throws RegraNegocioException;
+    void delete(ProdutoDTO entity);
+
+    @Override
+    ProdutoDTO buscarPorId(Integer id) throws RegraNegocioException;
 }

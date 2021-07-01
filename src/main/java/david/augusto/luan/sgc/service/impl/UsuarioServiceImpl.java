@@ -98,4 +98,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         return mapper.toDTO(repository.findById(id)
                 .orElseThrow(() -> new RegraNegocioException(USUARIO_NAO_CADASTRADO, ERROR_TITLE)));
     }
+
+    @Override
+    public UsuarioDTO atualizar(Integer id) throws RegraNegocioException {
+        Usuario usuario = new Usuario();
+        return this.salvar(mapper.toDTO(usuario));
+    }
 }

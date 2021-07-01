@@ -5,8 +5,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 @Table(name = "TB_PRODUTO")
 @Entity
@@ -23,6 +34,20 @@ public class Produto implements Serializable {
     @SequenceGenerator(name = "SQ_PRODUTO", sequenceName = "SQ_PRODUTO", initialValue = 2, allocationSize = 1)
     private Integer id;
 
-    @Column(name = "DESCRICAO")
-    private String descricao;
+    @Column(name = "NOME")
+    private String nome;
+
+    @Column(name = "QUANTIDADE_MINIMA")
+    private Integer quantidadeMinima;
+
+    @Column(name = "VALOR")
+    private Double valor;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_SITUACAO_PRODUTO")
+    private SituacaoProduto idSituacao;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_CATEGORIA")
+    private List<Categoria> categorias;
 }
