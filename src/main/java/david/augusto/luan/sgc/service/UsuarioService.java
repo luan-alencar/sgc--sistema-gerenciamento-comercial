@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public interface UsuarioService<U> extends ServiceGenericEntity<UsuarioDTO, Usuario> {
+public interface UsuarioService extends ServiceGenericEntity<UsuarioDTO, Usuario> {
 
     @Override
     List<UsuarioDTO> buscarTodos();

@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.rmi.server.UID;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +24,7 @@ import static david.augusto.luan.sgc.service.impl.utils.ConstantsUtil.*;
 @Transactional
 @RequiredArgsConstructor
 @Slf4j
-public class UsuarioServiceImpl implements UsuarioService<UsuarioDTO> {
+public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioMapper mapper;
     private final UsuarioRepository repository;
@@ -39,15 +40,15 @@ public class UsuarioServiceImpl implements UsuarioService<UsuarioDTO> {
     @Override
     public UsuarioDTO salvar(UsuarioDTO usuarioDTO) {
         usuarioDTO.setIsAdmin(NOT_ADMIN);
-        UsuarioDTO validaUsuario = validacoesNecessarias(usuarioDTO);
-        return mapper.toDTO(repository.save(mapper.toEntity(validaUsuario)));
+        validacoesNecessarias(usuarioDTO);
+        return mapper.toDTO(repository.save(mapper.toEntity(usuarioDTO)));
     }
 
     public UsuarioDTO validacoesNecessarias(UsuarioDTO usuario) {
         obterPorCpf(usuario.getCpf());
         validarCpfEMail(usuario);
         verificarDataNascimentoUsuario(usuario);
-        gerarChaveUnicaDeAcesso(mapper.toEntity(usuario));
+        gerarChaveUnicaDeAcesso(usuario);
         return usuario;
     }
 
@@ -81,9 +82,10 @@ public class UsuarioServiceImpl implements UsuarioService<UsuarioDTO> {
         return usuarioDTO;
     }
 
-    private UsuarioDTO gerarChaveUnicaDeAcesso(Usuario usuario) {
-        usuario.setChaveUnica(UUID.randomUUID().toString());
-        return mapper.toDTO(usuario);
+    private Usuario gerarChaveUnicaDeAcesso(UsuarioDTO usuario) {
+        Usuario salvarChaveDeAcesso = mapper.toEntity(usuario);
+        salvarChaveDeAcesso.setChaveUnica(UUID.randomUUID().toString());
+        return salvarChaveDeAcesso;
     }
 
     @Override
