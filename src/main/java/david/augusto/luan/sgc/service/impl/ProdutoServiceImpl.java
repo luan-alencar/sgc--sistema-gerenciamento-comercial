@@ -4,9 +4,17 @@ import david.augusto.luan.sgc.dominio.Categoria;
 import david.augusto.luan.sgc.service.ProdutoService;
 import david.augusto.luan.sgc.service.dto.ProdutoDTO;
 import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
+@Transactional
+@RequiredArgsConstructor
+@Slf4j
 public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
