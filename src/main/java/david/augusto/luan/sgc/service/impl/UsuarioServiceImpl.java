@@ -99,8 +99,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioDTO atualizar(Integer id) throws RegraNegocioException {
-        Usuario usuario = new Usuario();
+    public UsuarioDTO atualizar(UsuarioDTO usuarioDTO) throws RegraNegocioException {
+        Usuario usuario = mapper.toEntity(usuarioDTO);
         return this.salvar(mapper.toDTO(usuario));
     }
 }

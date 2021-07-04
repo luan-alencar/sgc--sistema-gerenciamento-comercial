@@ -8,6 +8,7 @@ import david.augusto.luan.sgc.service.ProdutoService;
 import david.augusto.luan.sgc.service.dto.CategoriaDTO;
 import david.augusto.luan.sgc.service.dto.ProdutoDTO;
 import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
+import david.augusto.luan.sgc.service.impl.utils.ConstantsUtil;
 import david.augusto.luan.sgc.service.mapper.ProdutoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +27,6 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     private final ProdutoMapper mapper;
     private final ProdutoRepository repository;
-    private static final SituacaoProduto EM_ESTOQUE = new SituacaoProduto(1, "Em Estoque");
-
 
     @Override
     public List<ProdutoDTO> buscarTodos() {
@@ -41,9 +40,9 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public ProdutoDTO salvar(ProdutoDTO entity) {
-        Produto produto = new Produto();
-        produto.setIdSituacao(EM_ESTOQUE);
+        Produto produto = mapper.toEntity(entity);
 
+        produto.setIdSituacao(ConstantsUtil.EM_ESTOQUE);
         return mapper.toDTO(repository.save(produto));
     }
 
@@ -59,7 +58,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public ProdutoDTO atualizar(Integer id) throws RegraNegocioException {
-        return null;
+    public ProdutoDTO atualizar(ProdutoDTO produtoDTO) throws RegraNegocioException {
+        return salvar(produtoDTO);
     }
 }

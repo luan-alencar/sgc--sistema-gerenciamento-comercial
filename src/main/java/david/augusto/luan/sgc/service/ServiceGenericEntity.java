@@ -18,5 +18,5 @@ public interface ServiceGenericEntity<T> {
 
     T buscarPorId(Integer id) throws RegraNegocioException;
 
-    T atualizar(Integer id) throws RegraNegocioException;
+    T atualizar(T id) throws RegraNegocioException;
 }
