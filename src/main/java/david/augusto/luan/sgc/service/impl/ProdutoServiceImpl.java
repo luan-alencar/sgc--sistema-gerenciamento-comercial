@@ -1,9 +1,14 @@
 package david.augusto.luan.sgc.service.impl;
 
 import david.augusto.luan.sgc.dominio.Categoria;
+import david.augusto.luan.sgc.dominio.Produto;
+import david.augusto.luan.sgc.dominio.SituacaoProduto;
+import david.augusto.luan.sgc.repository.ProdutoRepository;
 import david.augusto.luan.sgc.service.ProdutoService;
+import david.augusto.luan.sgc.service.dto.CategoriaDTO;
 import david.augusto.luan.sgc.service.dto.ProdutoDTO;
 import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
+import david.augusto.luan.sgc.service.mapper.ProdutoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -11,35 +16,46 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+import static david.augusto.luan.sgc.service.impl.utils.ConstantsUtil.PRODUTO_NAO_EXISTE;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
 @Slf4j
 public class ProdutoServiceImpl implements ProdutoService {
 
+    private final ProdutoMapper mapper;
+    private final ProdutoRepository repository;
+    private static final SituacaoProduto EM_ESTOQUE = new SituacaoProduto(1, "Em Estoque");
+
+
     @Override
     public List<ProdutoDTO> buscarTodos() {
-        return null;
+        return mapper.toListDTO(repository.findAll());
     }
 
     @Override
-    public List<Categoria> obterPoCategoria(Integer idCategoria) {
-        return null;
+    public List<ProdutoDTO> obterPoCategoria(Integer idProduto, Integer idCategoria) {
+        return mapper.toListDTO(repository.getProdutosPorCategoria(idProduto, idCategoria));
     }
 
     @Override
     public ProdutoDTO salvar(ProdutoDTO entity) {
-        return null;
+        Produto produto = new Produto();
+        produto.setIdSituacao(EM_ESTOQUE);
+
+        return mapper.toDTO(repository.save(produto));
     }
 
     @Override
     public void delete(ProdutoDTO entity) {
-
+        repository.deleteById(entity.getId());
     }
 
     @Override
     public ProdutoDTO buscarPorId(Integer id) throws RegraNegocioException {
-        return null;
+        return mapper.toDTO(repository.findById(id)
+                .orElseThrow(() -> new RegraNegocioException(PRODUTO_NAO_EXISTE, "Produto nao encontrado")));
     }
 
     @Override

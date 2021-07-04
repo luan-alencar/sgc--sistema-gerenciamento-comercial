@@ -1,5 +1,7 @@
 package david.augusto.luan.sgc.service.impl.utils;
 
+import david.augusto.luan.sgc.dominio.SituacaoProduto;
+
 public class ConstantsUtil {
     public static final String USUARIO_CPF_EMAIL_DUPLICADO = "Usuario com CPF ja cadastrado.";
     public static final String ERROR_TITLE =  "error.title";
@@ -21,4 +23,8 @@ public class ConstantsUtil {
     public static final Integer POSICAO_ONZE = 11;
 
     public static final String USUARIO_NAO_CADASTRADO = "Usuario não cadastrado.";
+
+    public static final String PRODUTO_NAO_EXISTE = "Produto nao encontrado";
+
+    public static final SituacaoProduto EM_ESTOQUE = new SituacaoProduto(1, "Em Estoque");
 }

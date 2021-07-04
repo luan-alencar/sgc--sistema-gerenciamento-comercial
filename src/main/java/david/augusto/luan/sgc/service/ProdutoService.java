@@ -1,6 +1,7 @@
 package david.augusto.luan.sgc.service;
 
 import david.augusto.luan.sgc.dominio.Categoria;
+import david.augusto.luan.sgc.service.dto.CategoriaDTO;
 import david.augusto.luan.sgc.service.dto.DominioFixoDTO;
 import david.augusto.luan.sgc.service.dto.ProdutoDTO;
 import david.augusto.luan.sgc.service.dto.UsuarioDTO;
@@ -17,7 +18,7 @@ public interface ProdutoService extends ServiceGenericEntity<ProdutoDTO> {
     @Override
     List<ProdutoDTO> buscarTodos();
 
-    List<Categoria> obterPoCategoria(Integer idCategoria);
+    List<ProdutoDTO> obterPoCategoria(Integer idProduto, Integer idCategoria);
 
     @Override
     ProdutoDTO salvar(ProdutoDTO entity);
