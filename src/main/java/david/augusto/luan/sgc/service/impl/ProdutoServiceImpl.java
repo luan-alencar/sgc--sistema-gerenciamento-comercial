@@ -1,5 +1,6 @@
 package david.augusto.luan.sgc.service.impl;
 
+import david.augusto.luan.sgc.dominio.Categoria;
 import david.augusto.luan.sgc.dominio.Produto;
 import david.augusto.luan.sgc.repository.ProdutoRepository;
 import david.augusto.luan.sgc.service.ProdutoService;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.List;
 
 import static david.augusto.luan.sgc.service.impl.utils.ConstantsUtil.PRODUTO_NAO_EXISTE;

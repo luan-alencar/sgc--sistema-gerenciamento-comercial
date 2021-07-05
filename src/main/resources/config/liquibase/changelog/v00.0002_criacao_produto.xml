@@ -54,11 +54,11 @@
             </column>
 
             <column name="ID_SITUACAO" type="NUMBER" remarks="Criacao coluna para o ID de uma Situacao">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
 
             <column name="ID_CATEGORIA" type="NUMBER" remarks="Criacao coluna para o ID de uma Categoria">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
         </createTable>
 

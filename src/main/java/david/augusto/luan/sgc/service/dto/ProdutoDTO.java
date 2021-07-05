@@ -24,7 +24,4 @@ public class ProdutoDTO implements Serializable {
 
     private Double valor;
 
-    private SituacaoProdutoDTO idSituacao;
-
-    private List<CategoriaDTO> categoria;
 }
