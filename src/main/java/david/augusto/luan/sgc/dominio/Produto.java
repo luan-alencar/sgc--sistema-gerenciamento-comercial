@@ -44,7 +44,7 @@ public class Produto implements Serializable {
     private Double valor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_SITUACAO_PRODUTO")
+    @JoinColumn(name = "ID_SITUACAO")
     private SituacaoProduto idSituacao;
 
     @OneToMany(fetch = FetchType.LAZY)

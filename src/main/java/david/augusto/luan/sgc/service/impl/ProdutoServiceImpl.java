@@ -38,8 +38,8 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public ProdutoDTO salvar(ProdutoDTO entity) {
         Produto produto = mapper.toEntity(entity);
-
         produto.setIdSituacao(ConstantsUtil.EM_ESTOQUE);
+
         return mapper.toDTO(repository.save(produto));
     }
 

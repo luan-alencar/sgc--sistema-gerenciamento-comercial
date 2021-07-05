@@ -1,10 +1,6 @@
 package david.augusto.luan.sgc.service;
 
-import david.augusto.luan.sgc.dominio.Categoria;
-import david.augusto.luan.sgc.service.dto.CategoriaDTO;
-import david.augusto.luan.sgc.service.dto.DominioFixoDTO;
 import david.augusto.luan.sgc.service.dto.ProdutoDTO;
-import david.augusto.luan.sgc.service.dto.UsuarioDTO;
 import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
 import org.springframework.stereotype.Service;
 

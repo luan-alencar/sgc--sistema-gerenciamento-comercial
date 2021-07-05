@@ -1,16 +1,17 @@
 package david.augusto.luan.sgc.web.rest;
 
-import david.augusto.luan.sgc.dominio.Produto;
 import david.augusto.luan.sgc.service.ProdutoService;
-import david.augusto.luan.sgc.service.UsuarioService;
-import david.augusto.luan.sgc.service.dto.DominioFixoDTO;
 import david.augusto.luan.sgc.service.dto.ProdutoDTO;
-import david.augusto.luan.sgc.service.dto.UsuarioDTO;
 import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
 import java.util.List;
