@@ -18,7 +18,7 @@ public interface ProdutoService extends ServiceGenericEntity<ProdutoDTO> {
     @Override
     List<ProdutoDTO> buscarTodos();
 
-    List<ProdutoDTO> obterPoCategoria(Integer idProduto, Integer idCategoria);
+    List<ProdutoDTO> obterPoCategoria(Integer idCategoria);
 
     @Override
     ProdutoDTO salvar(ProdutoDTO entity);

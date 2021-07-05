@@ -1,11 +1,8 @@
 package david.augusto.luan.sgc.service.impl;
 
-import david.augusto.luan.sgc.dominio.Categoria;
 import david.augusto.luan.sgc.dominio.Produto;
-import david.augusto.luan.sgc.dominio.SituacaoProduto;
 import david.augusto.luan.sgc.repository.ProdutoRepository;
 import david.augusto.luan.sgc.service.ProdutoService;
-import david.augusto.luan.sgc.service.dto.CategoriaDTO;
 import david.augusto.luan.sgc.service.dto.ProdutoDTO;
 import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
 import david.augusto.luan.sgc.service.impl.utils.ConstantsUtil;
@@ -34,8 +31,8 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public List<ProdutoDTO> obterPoCategoria(Integer idProduto, Integer idCategoria) {
-        return mapper.toListDTO(repository.getProdutosPorCategoria(idProduto, idCategoria));
+    public List<ProdutoDTO> obterPoCategoria(Integer idCategoria) {
+        return mapper.toListDTO(repository.getProdutosPorCategoria(idCategoria));
     }
 
     @Override

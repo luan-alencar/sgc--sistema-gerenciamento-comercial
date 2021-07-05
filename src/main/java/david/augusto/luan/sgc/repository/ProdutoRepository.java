@@ -15,7 +15,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
     @Query("SELECT new david.augusto.luan.sgc.service.dto.CategoriaDTO(up.id, up.descricao)"
             + " FROM Produto p INNER JOIN p.categorias up"
             + " WHERE p.id = :idProduto AND up.id = :idCategoria")
-    List<Produto> getProdutosPorCategoria(@Param("idProduto") Integer idProduto,
-                                             @Param("idCategoria") Integer idCategoria);
+    List<Produto> getProdutosPorCategoria(
+            @Param("idCategoria") Integer idCategoria);
 
 }
