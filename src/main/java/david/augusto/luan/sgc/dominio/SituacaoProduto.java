@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 @Table(name = "TB_SITUACAO_PRODUTO")
 @Entity
@@ -17,9 +16,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SituacaoProduto implements Serializable {
-
-    private static final long serialVersionUID = 415881688040796203L;
+public class SituacaoProduto {
 
     @Id
     private Integer id;

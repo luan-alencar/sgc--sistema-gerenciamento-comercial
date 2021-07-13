@@ -1,6 +1,5 @@
 package david.augusto.luan.sgc.service.dto;
 
-import david.augusto.luan.sgc.dominio.Categoria;
 import david.augusto.luan.sgc.dominio.SituacaoProduto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProdutoDTO implements Serializable {
+public class ProdutoDTO {
 
     private Integer id;
 
@@ -24,4 +23,7 @@ public class ProdutoDTO implements Serializable {
 
     private Double valor;
 
+    private SituacaoProduto idSituacao;
+
+    private List<CategoriaDTO> categorias;
 }

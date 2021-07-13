@@ -43,7 +43,8 @@ public class UsuarioResource {
     @Timed
     public ResponseEntity<UsuarioDTO> salvar(@RequestBody UsuarioDTO usuario) {
         log.debug("REST request para cadastrar um Usuario");
-        return ResponseEntity.ok(service.salvar(usuario));
+        service.salvar(usuario);
+        return ResponseEntity.ok().build();
     }
 }
 

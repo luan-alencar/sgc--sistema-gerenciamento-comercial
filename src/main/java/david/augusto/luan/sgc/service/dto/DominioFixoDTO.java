@@ -11,9 +11,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DominioFixoDTO implements Serializable {
-
-    private static final long serialVersionUID = -6786788218042581068L;
+public class DominioFixoDTO {
 
     private Integer value;
 

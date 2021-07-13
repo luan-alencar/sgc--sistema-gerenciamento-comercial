@@ -37,10 +37,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioDTO salvar(UsuarioDTO usuarioDTO) {
+    public Usuario salvar(UsuarioDTO usuarioDTO) {
         usuarioDTO.setIsAdmin(NOT_ADMIN);
         validacoesNecessarias(usuarioDTO);
-        return mapper.toDTO(repository.save(mapper.toEntity(usuarioDTO)));
+        return repository.save(mapper.toEntity(usuarioDTO));
     }
 
     public UsuarioDTO validacoesNecessarias(UsuarioDTO usuario) {
@@ -99,7 +99,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioDTO atualizar(UsuarioDTO usuarioDTO) throws RegraNegocioException {
+    public Usuario atualizar(UsuarioDTO usuarioDTO) throws RegraNegocioException {
         Usuario usuario = mapper.toEntity(usuarioDTO);
         return this.salvar(mapper.toDTO(usuario));
     }

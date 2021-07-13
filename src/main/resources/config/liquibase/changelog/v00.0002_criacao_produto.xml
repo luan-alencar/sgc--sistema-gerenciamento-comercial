@@ -32,6 +32,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addPrimaryKey tableName="TB_SITUACAO_PRODUTO" columnNames="ID_SITUACAO"/>
     </changeSet>
 
     <changeSet id="5" author="luan.augusto">
@@ -53,23 +55,23 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="ID_SITUACAO" type="NUMBER" remarks="Criacao coluna para o ID de uma Situacao">
-                <constraints nullable="true"/>
+            <column name="SITUACAO_ID" type="NUMBER" remarks="Criacao coluna para o ID de uma Situacao">
+                <constraints nullable="false"/>
             </column>
 
-            <column name="ID_CATEGORIA" type="NUMBER" remarks="Criacao coluna para o ID de uma Categoria">
-                <constraints nullable="true"/>
+            <column name="CATEGORIA_ID" type="NUMBER" remarks="Criacao coluna para o ID de uma Categoria">
+                <constraints nullable="false"/>
             </column>
         </createTable>
 
         <addPrimaryKey tableName="TB_PRODUTO" columnNames="ID" constraintName="PK_PRODUTO"/>
         <createSequence sequenceName="SQ_PRODUTO" startValue="2" incrementBy="1"/>
 
-        <addForeignKeyConstraint baseTableName="TB_PRODUTO" baseColumnNames="ID_SITUACAO"
-                                 constraintName="FK_SITUACAO" referencedTableName="TB_CATEGORIA"
-                                 referencedColumnNames="ID_CATEGORIA"/>
+        <addForeignKeyConstraint baseTableName="TB_PRODUTO" baseColumnNames="SITUACAO_ID"
+                                 constraintName="FK_SITUACAO" referencedTableName="TB_SITUACAO_PRODUTO"
+                                 referencedColumnNames="ID_SITUACAO"/>
 
-        <addForeignKeyConstraint baseTableName="TB_PRODUTO" baseColumnNames="ID_CATEGORIA"
+        <addForeignKeyConstraint baseTableName="TB_PRODUTO" baseColumnNames="CATEGORIA_ID"
                                  constraintName="FK_CATEGORIA"
                                  referencedTableName="TB_CATEGORIA"
                                  referencedColumnNames="ID_CATEGORIA"/>

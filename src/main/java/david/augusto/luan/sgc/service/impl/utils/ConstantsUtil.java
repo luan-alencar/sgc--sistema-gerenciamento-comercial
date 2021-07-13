@@ -3,6 +3,10 @@ package david.augusto.luan.sgc.service.impl.utils;
 import david.augusto.luan.sgc.dominio.SituacaoProduto;
 
 public class ConstantsUtil {
+
+    private ConstantsUtil() {
+    }
+
     public static final String USUARIO_CPF_EMAIL_DUPLICADO = "Usuario com CPF ja cadastrado.";
     public static final String ERROR_TITLE =  "error.title";
 

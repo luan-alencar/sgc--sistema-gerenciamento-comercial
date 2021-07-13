@@ -5,8 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Table(name = "TB_CATEGORIA")
 @Entity
@@ -14,9 +16,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Categoria  implements Serializable {
-
-    private static final long serialVersionUID = 4371679100150120121L;
+public class Categoria  {
 
     @Id
     private Integer id;

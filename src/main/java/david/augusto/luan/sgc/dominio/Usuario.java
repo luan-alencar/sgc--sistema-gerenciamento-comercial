@@ -17,9 +17,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario implements Serializable {
-
-    private static final long serialVersionUID = -3591529614279292916L;
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_USUARIO")

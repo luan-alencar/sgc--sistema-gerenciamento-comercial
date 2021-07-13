@@ -1,9 +1,7 @@
 package david.augusto.luan.sgc.service.mapper;
 
 import david.augusto.luan.sgc.dominio.Categoria;
-import david.augusto.luan.sgc.dominio.Usuario;
 import david.augusto.luan.sgc.service.dto.CategoriaDTO;
-import david.augusto.luan.sgc.service.dto.UsuarioDTO;
 import org.mapstruct.Mapper;
 
 import java.util.List;

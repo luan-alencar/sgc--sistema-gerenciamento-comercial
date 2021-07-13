@@ -25,9 +25,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Produto implements Serializable {
-
-    private static final long serialVersionUID = 2747267962497450718L;
+public class Produto  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_PRODUTO")
@@ -44,10 +42,10 @@ public class Produto implements Serializable {
     private Double valor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_SITUACAO")
+    @JoinColumn(name = "SITUACAO_ID")
     private SituacaoProduto idSituacao;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_CATEGORIA")
+    @JoinColumn(name = "CATEGORIA_ID")
     private List<Categoria> categorias;
 }

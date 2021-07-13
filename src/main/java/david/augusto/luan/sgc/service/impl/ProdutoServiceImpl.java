@@ -1,6 +1,5 @@
 package david.augusto.luan.sgc.service.impl;
 
-import david.augusto.luan.sgc.dominio.Categoria;
 import david.augusto.luan.sgc.dominio.Produto;
 import david.augusto.luan.sgc.repository.ProdutoRepository;
 import david.augusto.luan.sgc.service.ProdutoService;
@@ -13,8 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Arrays;
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 import static david.augusto.luan.sgc.service.impl.utils.ConstantsUtil.PRODUTO_NAO_EXISTE;
 
@@ -38,11 +38,20 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public ProdutoDTO salvar(ProdutoDTO entity) {
-        Produto produto = mapper.toEntity(entity);
-        produto.setIdSituacao(ConstantsUtil.EM_ESTOQUE);
+    public Produto atualizar(@Valid ProdutoDTO produtoDTO) throws RegraNegocioException {
 
-        return mapper.toDTO(repository.save(produto));
+        if (Objects.isNull(produtoDTO.getId())) {
+            throw new RegraNegocioException("Produto nao encontrado");
+        }
+
+        return salvar(produtoDTO);
+    }
+
+    @Override
+    public Produto salvar(ProdutoDTO entity) {
+        entity.setIdSituacao(ConstantsUtil.EM_ESTOQUE);
+        repository.save(mapper.toEntity(entity));
+        return mapper.toEntity(entity);
     }
 
     @Override
@@ -54,10 +63,5 @@ public class ProdutoServiceImpl implements ProdutoService {
     public ProdutoDTO buscarPorId(Integer id) throws RegraNegocioException {
         return mapper.toDTO(repository.findById(id)
                 .orElseThrow(() -> new RegraNegocioException(PRODUTO_NAO_EXISTE, "Produto nao encontrado")));
-    }
-
-    @Override
-    public ProdutoDTO atualizar(ProdutoDTO produtoDTO) throws RegraNegocioException {
-        return salvar(produtoDTO);
     }
 }

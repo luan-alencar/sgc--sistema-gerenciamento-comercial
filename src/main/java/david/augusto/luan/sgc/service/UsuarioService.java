@@ -1,5 +1,6 @@
 package david.augusto.luan.sgc.service;
 
+import david.augusto.luan.sgc.dominio.Usuario;
 import david.augusto.luan.sgc.service.dto.DominioFixoDTO;
 import david.augusto.luan.sgc.service.dto.UsuarioDTO;
 import david.augusto.luan.sgc.service.exceptions.RegraNegocioException;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public interface UsuarioService extends ServiceGenericEntity<UsuarioDTO> {
+public interface UsuarioService extends ServiceGenericEntity<UsuarioDTO, Usuario> {
 
     @Override
     List<UsuarioDTO> buscarTodos();
@@ -18,7 +19,7 @@ public interface UsuarioService extends ServiceGenericEntity<UsuarioDTO> {
     List<DominioFixoDTO> obterPorCpf(String cpf);
 
     @Override
-    UsuarioDTO salvar(UsuarioDTO entity);
+    Usuario salvar(UsuarioDTO entity);
 
     @Override
     void delete(UsuarioDTO entity);

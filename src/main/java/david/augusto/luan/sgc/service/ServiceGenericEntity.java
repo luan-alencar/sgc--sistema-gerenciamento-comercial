@@ -8,15 +8,15 @@ import java.util.List;
 
 @Service
 @Transactional
-public interface ServiceGenericEntity<T> {
+public interface ServiceGenericEntity<T, X> {
 
     List<T> buscarTodos();
 
-    T salvar(T entity);
+    X salvar(T entity);
 
     void delete(T entity);
 
     T buscarPorId(Integer id) throws RegraNegocioException;
 
-    T atualizar(T id) throws RegraNegocioException;
+    X atualizar(T id) throws RegraNegocioException;
 }

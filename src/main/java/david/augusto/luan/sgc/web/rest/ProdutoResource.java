@@ -9,11 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,7 +28,7 @@ public class ProdutoResource {
     private final ProdutoService service;
 
     @GetMapping
-    public ResponseEntity<List<ProdutoDTO>> buscarTodosUsuarios() {
+    public ResponseEntity<List<ProdutoDTO>> buscarTodosProdutos() {
         log.debug("REST request para buscar todos Produtos cadastrados");
         return ResponseEntity.ok(service.buscarTodos());
     }
@@ -44,11 +46,20 @@ public class ProdutoResource {
         return ResponseEntity.ok(service.obterPoCategoria(idCategoria));
     }
 
-    @PostMapping("/salvar")
+    @PostMapping
     @Timed
-    public ResponseEntity<ProdutoDTO> salvar(@RequestBody ProdutoDTO produtoDTO) {
+    public ResponseEntity<Void> salvar(@RequestBody ProdutoDTO produtoDTO) {
         log.debug("REST request para cadastrar um Produto");
-        return ResponseEntity.ok(service.salvar(produtoDTO));
+        service.salvar(produtoDTO);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    @Timed
+    public ResponseEntity<Void> atualizar(@Valid @RequestBody ProdutoDTO produtoDTO) {
+        log.debug("REST request para atualizar um Produto");
+        service.atualizar(produtoDTO);
+        return ResponseEntity.ok().build();
     }
 }
 

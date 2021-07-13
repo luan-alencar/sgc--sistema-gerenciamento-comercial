@@ -7,15 +7,13 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioDTO implements Serializable {
+public class UsuarioDTO {
 
     private Integer id;
 
