@@ -1,0 +1,34 @@
+application:
+  appName: sgcservice
+
+
+spring:
+  application:
+    name: sgcservice
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/sgc
+    username: sgc
+    password: sgc
+
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+
+  jackson:
+    date-format: yyyy-MM-dd
+    deserialization:
+      fail-on-unknown-properties: false
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+
+
+
+server:
+  port: 8080
